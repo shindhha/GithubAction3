@@ -4,5 +4,7 @@ jobs:
   display_values:
     runs-on: ubuntu-lastest
     steps:
-      - run: echo "A MODIFIER"
+      - run: |
+          echo "${{ secrets.DATABASE_PASSWORD }}"
+          echo "${{ vars.VERSION }}"
       
