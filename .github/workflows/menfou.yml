@@ -8,16 +8,19 @@ jobs:
     steps:
       - run: echo "Mon application" > my_app.txt
 
-      - name: Github Scripts
-        id: step-return
-        uses: actions/github-script@v7.0.1
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.3
         with:
-          # The script to run
-          script: return "Mon retour";
+          name: App_To_Deploy
+          path: my_app.txt
   deploy:
     runs-on: ubuntu-latest
     needs: build
     steps: 
+      - name: Download file
+        uses: actions/download-artifact@v2.1.1
+        with:
+          name: App_To_Deploy
       - run: |
           ls
           cat my_app.txt
