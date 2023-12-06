@@ -9,7 +9,7 @@ jobs:
       - run: |
           echo "${{ secrets.DATABASE_PASSWORD }}"
           echo "${{ vars.VERSION }}"
-                  - name: GitHub Script
+
       - name: Github Scripts
         id: step-return
         uses: actions/github-script@v7.0.1
