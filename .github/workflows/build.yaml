@@ -1,5 +1,5 @@
 name : Test Secrets
-on: push
+on: [merge_group]
 jobs:
   display_values:
     runs-on: ubuntu-latest
