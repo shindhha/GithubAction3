@@ -3,8 +3,23 @@ on: push
 jobs:
   display_values:
     runs-on: ubuntu-latest
+    outputs:
+      MON_RETOUR: ${{ steps.step-return.outputs.result }}
     steps:
       - run: |
           echo "${{ secrets.DATABASE_PASSWORD }}"
           echo "${{ vars.VERSION }}"
+                  - name: GitHub Script
+      - name: Github Scripts
+        id: step-return
+        uses: actions/github-script@v7.0.1
+        with:
+          # The script to run
+          script: return "Mon retour";
+  display_return:
+    runs-on: ubuntu-latest
+    needs: display_values
+    steps: 
+      - run: echo "${{ needs.display_values.outputs.MON_RETOUR}}"
+          
       
