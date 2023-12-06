@@ -1,0 +1,25 @@
+name : Test Secrets
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      MON_RETOUR: ${{ steps.step-return.outputs.result }}
+    steps:
+      - run: echo "Mon application" > my_app.txt
+
+      - name: Github Scripts
+        id: step-return
+        uses: actions/github-script@v7.0.1
+        with:
+          # The script to run
+          script: return "Mon retour";
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps: 
+      - run: |
+          ls
+          cat my_app.txt
+          
+      
